@@ -1,0 +1,9 @@
+# Archivos fuente pesados originales (ya optimizados en /assets)
+/*.png
+
+# Config local de desarrollo
+.claude/
+
+# OS
+Thumbs.db
+.DS_Store
