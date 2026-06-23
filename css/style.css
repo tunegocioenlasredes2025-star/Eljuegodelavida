@@ -512,3 +512,79 @@ h1,h2,h3,h4 { font-family: var(--font-head); line-height:1.12; font-weight:700; 
   .gallery { grid-template-columns:1fr; grid-auto-rows:200px; }
   .gallery-lg, .gallery-text { grid-column: span 1; }
 }
+
+/* ===================================================================
+   PÁGINAS INTERNAS (sitio multipágina)
+   =================================================================== */
+.nav-link.active { color:var(--text); background:rgba(255,255,255,.07); }
+
+.page-hero {
+  position:relative; overflow:hidden; text-align:center;
+  padding:164px 0 72px;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% -10%, rgba(171,111,234,.22), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 5%, rgba(9,206,251,.12), transparent 60%),
+    var(--bg);
+  border-bottom:1px solid var(--line-2);
+}
+.page-hero::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+  background-size:54px 54px;
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 20%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 20%, #000 30%, transparent 75%);
+}
+.page-hero-inner { position:relative; z-index:1; max-width:740px; margin:0 auto; }
+.page-hero h1 { font-size: clamp(2.1rem,5vw,3.2rem); font-weight:800; }
+.page-hero p { color:var(--muted); margin-top:18px; font-size:1.1rem; max-width:580px; margin-inline:auto; }
+.breadcrumb { display:flex; justify-content:center; gap:9px; font-size:.84rem; color:var(--muted-2); margin-top:24px; }
+.breadcrumb a { color:var(--muted-2); }
+.breadcrumb a:hover { color:var(--cyan); }
+.breadcrumb .sep { opacity:.5; }
+.breadcrumb .current { color:var(--muted); }
+
+/* Pasos "cómo reservar" */
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.step { position:relative; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:30px 24px; transition:transform .4s var(--ease), border-color .4s; }
+.step:hover { transform:translateY(-5px); border-color:color-mix(in srgb, var(--purple) 35%, var(--line)); }
+.step-num { display:inline-grid; place-items:center; width:44px; height:44px; border-radius:12px; font-family:var(--font-head); font-weight:700; font-size:1.05rem; margin-bottom:18px; background:var(--grad-primary); color:#fff; }
+.step h3 { font-size:1.05rem; margin-bottom:8px; font-weight:600; }
+.step p { color:var(--muted); font-size:.92rem; }
+
+/* Formulario de contacto rápido */
+.contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap:46px; align-items:start; }
+.contact-form { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:34px; box-shadow:var(--shadow-sm); }
+.contact-form h3 { font-size:1.3rem; margin-bottom:6px; }
+.contact-form .form-note { color:var(--muted); font-size:.92rem; margin-bottom:24px; }
+.field { margin-bottom:16px; }
+.field label { display:block; font-size:.84rem; font-weight:500; color:var(--muted); margin-bottom:7px; }
+.field input, .field select, .field textarea {
+  width:100%; padding:12px 14px; border-radius:11px;
+  background:var(--bg-2); border:1px solid var(--line); color:var(--text);
+  font-family:var(--font-body); font-size:.96rem; transition:border-color .25s, box-shadow .25s;
+}
+.field input::placeholder, .field textarea::placeholder { color:var(--muted-2); }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline:none; border-color:var(--cyan); box-shadow:0 0 0 3px rgba(9,206,251,.13);
+}
+.field select { appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%239aa4c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 5 4 4 4-4'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+.field textarea { resize:vertical; min-height:100px; }
+.field-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.contact-form .btn { width:100%; margin-top:8px; }
+
+@media (max-width:980px) {
+  .steps { grid-template-columns:repeat(2,1fr); }
+  .contact-grid { grid-template-columns:1fr; }
+  .contact-info { text-align:center; }
+  .contact-info .loc-list { text-align:left; max-width:440px; margin-inline:auto; }
+}
+@media (max-width:760px) {
+  .page-hero { padding:132px 0 58px; }
+}
+@media (max-width:480px) {
+  .steps { grid-template-columns:1fr; }
+  .field-row { grid-template-columns:1fr; }
+  .contact-form { padding:24px; }
+}

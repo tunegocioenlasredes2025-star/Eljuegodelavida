@@ -79,38 +79,62 @@
     });
   });
 
-  /* ---------- Lightbox ---------- */
+  /* ---------- Lightbox (sólo en páginas con galería) ---------- */
   const lightbox = document.getElementById("lightbox");
   const lbImg = document.getElementById("lightboxImg");
   const lbCap = document.getElementById("lightboxCap");
   const lbClose = document.getElementById("lightboxClose");
 
-  const openLightbox = (src, cap, alt) => {
-    lbImg.src = src;
-    lbImg.alt = alt || cap || "";
-    lbCap.textContent = cap || "";
-    lightbox.classList.add("open");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  };
-  const closeLightbox = () => {
-    lightbox.classList.remove("open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
+  if (lightbox && lbImg && lbClose) {
+    const openLightbox = (src, cap, alt) => {
+      lbImg.src = src;
+      lbImg.alt = alt || cap || "";
+      if (lbCap) lbCap.textContent = cap || "";
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+    const closeLightbox = () => {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
 
-  document.querySelectorAll(".gallery-item[data-img]").forEach((item) => {
-    item.addEventListener("click", () => {
-      const img = item.querySelector("img");
-      openLightbox(item.dataset.img, item.dataset.caption, img ? img.alt : "");
+    document.querySelectorAll(".gallery-item[data-img]").forEach((item) => {
+      item.addEventListener("click", () => {
+        const img = item.querySelector("img");
+        openLightbox(item.dataset.img, item.dataset.caption, img ? img.alt : "");
+      });
     });
-  });
 
-  lbClose.addEventListener("click", closeLightbox);
-  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
-  });
+    lbClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+    });
+  }
+
+  /* ---------- Formulario rápido → WhatsApp ---------- */
+  const quickForm = document.getElementById("quickForm");
+  if (quickForm) {
+    quickForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const val = (id) => (document.getElementById(id)?.value || "").trim();
+      const nombre = val("cf-nombre");
+      const evento = val("cf-evento");
+      const fecha = val("cf-fecha");
+      const msg = val("cf-msg");
+
+      let text = "¡Hola! Quiero hacer una consulta para El Juego de la Vida.";
+      if (nombre) text += ` Soy ${nombre}.`;
+      if (evento) text += ` Tipo de evento: ${evento}.`;
+      if (fecha) text += ` Fecha tentativa: ${fecha}.`;
+      if (msg) text += ` ${msg}`;
+
+      const url = "https://wa.me/5491150200270?text=" + encodeURIComponent(text);
+      window.open(url, "_blank", "noopener");
+    });
+  }
 
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById("year");
