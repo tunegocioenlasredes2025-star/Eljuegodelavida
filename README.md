@@ -23,7 +23,7 @@ Sitio estático — Vercel detecta `index.html` automáticamente (sin configurac
 
 ## Contacto del negocio
 - 📍 Remedios de Escalada de San Martín 181, Haedo, Buenos Aires
-- 💬 WhatsApp: +54 9 11 5020-0270
+- 💬 WhatsApp: +54 9 11 5739-9636
 - 📷 Instagram: [@eljuegodelavidahaedo](https://www.instagram.com/eljuegodelavidahaedo/)
 
 ---

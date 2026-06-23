@@ -131,7 +131,7 @@
       if (fecha) text += ` Fecha tentativa: ${fecha}.`;
       if (msg) text += ` ${msg}`;
 
-      const url = "https://wa.me/5491150200270?text=" + encodeURIComponent(text);
+      const url = "https://wa.me/5491157399636?text=" + encodeURIComponent(text);
       window.open(url, "_blank", "noopener");
     });
   }
