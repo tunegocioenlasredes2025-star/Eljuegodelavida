@@ -7,3 +7,8 @@
 # OS
 Thumbs.db
 .DS_Store
+
+# Instaladores / binarios que no son parte del sitio
+*.msi
+*.exe
+*.zip
